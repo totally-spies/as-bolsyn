@@ -24,3 +24,9 @@ Are you familiar with the problem of long waiting for your order in a restaurant
 5. Edit order in your dishes list, if necessary. Complete your order
 5. Come to the restaurant and enjoy your food!
 6. Leave feedback and help others to choose the best restaurant
+
+### UML Diagram
+![UML Diagram](https://serving.photos.photobox.com/61316741c0d907ff25c3c0dac8418a25ade2ad256a1bf1d6338174464e29e60c1db9be54.jpg)
+
+### Use Case Diagram
+![Use Case Diagram](https://serving.photos.photobox.com/390366918ba2c880171dc2d31024b1e61a2617a5f5454a64773379ff2d4ff35a83808203.jpg)
