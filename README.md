@@ -26,7 +26,7 @@ Are you familiar with the problem of long waiting for your order in a restaurant
 6. Leave feedback and help others to choose the best restaurant
 
 ### UML Diagram
-![UML Diagram](https://i.ibb.co/Wfc96p9/uml.jpg)
+![UML Diagram](https://i.ibb.co/wJ4yFH9/uml.jpg)
 
 ### Use Case Diagram
 ![Use Case Diagram](https://i.ibb.co/fqrX48z/use-case.jpg)
