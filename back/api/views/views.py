@@ -7,7 +7,7 @@ from api.serializers import CuisineSerializer, RestaurantSerializer, \
 
 
 class CuisineView(generics.ListAPIView):
-    queryset = Cuisine.oblects.all()
+    queryset = Cuisine.objects.all()
     serializer_class = CuisineSerializer
 
 
