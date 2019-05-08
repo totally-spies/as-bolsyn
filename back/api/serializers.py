@@ -2,10 +2,12 @@ from rest_framework import serializers
 from api.models import Restaurant, Cuisine, Order, Review, Dish
 from django.contrib.auth.models import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name', 'password', 'login', 'is_admin')
+        fields = ('name', 'password', 'login', 'is_superuser')
+
 
 class CuisineSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -21,39 +23,43 @@ class CuisineSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+
 class RestaurantSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
+    cuisine = CuisineSerializer(read_only=True)
 
     class Meta:
         model = Restaurant
-        fields = ('id', 'name')
+        fields = '__all__'
+
 
 class DishSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
-    restaurant = RestaurantSerializer(required=True)
+    restaurant = RestaurantSerializer(read_only=True)
 
     class Meta:
         model = Dish
-        fields = ('id', 'name', 'restaurant')
+        fields = '__all__'
+
 
 class OrderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    dish_name = DishSerializer(required=True)
-    count = serializers.IntegerField(read_only=True)
+    dish_name = serializers.CharField(required=True)
+    count = serializers.IntegerField(required=True)
     user = UserSerializer(read_only=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'dish_name', 'count', 'user')
+        fields = '__all__'
+
 
 class ReviewSerializer(serializers.ModelSerializer):
+    text = serializers.CharField(required=True)
     user = UserSerializer()
     restaurant = RestaurantSerializer()
-    text = serializers.CharField(required=True)
 
     class Meta:
         model = Review
-        fields = ('user', 'restaurant', 'text')
-
+        fields = '__all__'
