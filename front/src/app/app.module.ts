@@ -7,10 +7,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProviderService } from './shared/services/provider.service';
 import { FormsModule } from '@angular/forms';
 import {AuthInterceptor} from './AuthInterceptor';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
