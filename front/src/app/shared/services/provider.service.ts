@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MainService } from './main.service';
 import { HttpClient } from '@angular/common/http';
-import { IAuthResponse, ICuisine, IRestaurant, IDish, IOrder, IReview } from '../models/models';
+import { IAuthResponse, ISection, IRestaurant, IDish, IOrder, IReview } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,13 @@ export class ProviderService extends MainService {
   }
 
   // CUISINE
-  getCuisines(): Promise<ICuisine[]> {
+  getCuisines(): Promise<ISection[]> {
     return this.get('http://localhost:8000/api/cuisines/', {});
   }
 
   // RESTAURANT
-  getRestaurants(restaurant: IRestaurant): Promise<IRestaurant[]> {
-    return this.get(`http://localhost:8000/api/cuisines/${restaurant.id}/restaurants/`, {});
+  getRestaurants(cuisine: ISection): Promise<IRestaurant[]> {
+    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/`, {});
   }
 
   // createRestaurant(name: any): Promise<IRestaurant> {
@@ -28,20 +28,20 @@ export class ProviderService extends MainService {
   //   });
   // }
 
-  updateRestaurant(cuisine: ICuisine, restaurant: IRestaurant): Promise<IRestaurant> {
+  updateRestaurant(cuisine: ISection, restaurant: IRestaurant): Promise<IRestaurant> {
     return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/`, {
       name: restaurant.name,
       // cuisine:
     });
   }
 
-  deleteRestaurant(cuisineId: number, restId: number): Promise<any> {
-    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restId}/`, {});
+  deleteRestaurant(cuisineId:number, restaurantId: number): Promise<any> {
+    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restaurantId}/`, {});
   }
 
   // DISH
-  getDishes(cuisine: ICuisine, dish: IDish): Promise<IDish[]> {
-    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${dish.id}/`, {});
+  getDishes(cuisine: ISection, restaurant:IRestaurant): Promise<IDish[]> {
+    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/`, {});
   }
 
   // createDish(name: any): Promise<IRestaurant> {
@@ -50,15 +50,15 @@ export class ProviderService extends MainService {
   //   });
   // }
 
-  updateDish(cuisine: ICuisine, restaurant: IRestaurant): Promise<IRestaurant> {
-    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/`, {
-      name: restaurant.name,
+  updateDish(cuisine: ISection, restaurant: IRestaurant, dish:IDish): Promise<IDish> {
+    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/dishes/${dish.id}`, {
+      name: dish.name,
       // cuisine:
     });
   }
 
-  deleteDish(cuisineId: number, restId: number): Promise<any> {
-    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restId}/`, {});
+  deleteDish(cuisineId:number, restaurantId:number, dishId:number): Promise<any> {
+    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restaurantId}/dish/${dishId}`, {});
   }
 
   // AUTH
