@@ -7,22 +7,23 @@ from api.serializers import CuisineSerializer, RestaurantSerializer, \
 
 
 class CuisineView(generics.ListAPIView):
-    queryset = Cuisine.objects.all()
     serializer_class = CuisineSerializer
+    def get_queryset(self):
+        return Cuisine.objects.filter(cuisine=self.kwargs['pk'])
 
 
 class RestaurantsView(generics.ListCreateAPIView):
     serializer_class = RestaurantSerializer
 
     def get_queryset(self):
-        return Restaurant.objects.filter(cuisine=self.kwargs['pk'])
+        return Restaurant.objects.filter(restaurant=self.kwargs['pk2'])
 
 
 class DishView(generics.ListCreateAPIView):
     serializer_class = DishSerializer
 
     def get_queryset(self):
-        return Dish.objects.filter(restaurant=self.kwargs['pk2'])
+        return Dish.objects.filter(dish=self.kwargs['pk3'])
 
 
 class OrderView(generics.ListCreateAPIView):

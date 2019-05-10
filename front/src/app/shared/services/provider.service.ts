@@ -29,19 +29,19 @@ export class ProviderService extends MainService {
   // }
 
   updateRestaurant(cuisine: ISection, restaurant: IRestaurant): Promise<IRestaurant> {
-    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/`, {
+    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurant/${restaurant.id}/`, {
       name: restaurant.name,
       // cuisine:
     });
   }
 
   deleteRestaurant(cuisineId:number, restaurantId: number): Promise<any> {
-    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restaurantId}/`, {});
+    return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurant/${restaurantId}/`, {});
   }
 
   // DISH
   getDishes(cuisine: ISection, restaurant:IRestaurant): Promise<IDish[]> {
-    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/`, {});
+    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/dishes/`, {});
   }
 
   // createDish(name: any): Promise<IRestaurant> {
@@ -51,7 +51,7 @@ export class ProviderService extends MainService {
   // }
 
   updateDish(cuisine: ISection, restaurant: IRestaurant, dish:IDish): Promise<IDish> {
-    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/dishes/${dish.id}`, {
+    return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/dish/${dish.id}`, {
       name: dish.name,
       // cuisine:
     });
