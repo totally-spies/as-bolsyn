@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Restaurant, Cuisine, Order, Review, Dish
+from api.models import Section, Restaurant, Order, Review, Dish
 from django.contrib.auth.models import User
 
 
@@ -9,14 +9,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'password', 'is_staff')
 
 
-class CuisineSerializer(serializers.Serializer):
+class SectionSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
 
     def create(self, validated_data):
-        cuisine = Cuisine(**validated_data)
-        cuisine.save()
-        return cuisine
+        section = Section(**validated_data)
+        section.save()
+        return section
 
     def update(self, instance, validated_data):
         instance.name = validated_data('name', instance.name)
@@ -27,7 +27,7 @@ class CuisineSerializer(serializers.Serializer):
 class RestaurantSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
-    cuisine = CuisineSerializer(read_only=True)
+    section = SectionSerializer(read_only=True)
 
     class Meta:
         model = Restaurant

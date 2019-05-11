@@ -1,21 +1,38 @@
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
-from api.models import Cuisine, Restaurant, Dish, Order, Review
-from api.serializers import CuisineSerializer, RestaurantSerializer, \
+from api.models import Section, Restaurant, Dish, Order, Review
+from api.serializers import SectionSerializer, RestaurantSerializer, \
                             DishSerializer, OrderSerializer, ReviewSerializer
 
-
-class CuisineView(generics.ListAPIView):
-    queryset = Cuisine.objects.all()
-    serializer_class = CuisineSerializer
+from django.shortcuts import get_object_or_404
 
 
-class RestaurantsView(generics.ListCreateAPIView):
-    serializer_class = RestaurantSerializer
+@api_view(['GET'])
+def sections_view(request):
+    if request.method == 'GET':
+        sections = Section.objects.all()
+        serializer = SectionSerializer(sections, many=True)
+        return Response(serializer.data, status=200)
 
-    def get_queryset(self):
-        return Restaurant.objects.filter(cuisine=self.kwargs['pk'])
+
+@api_view(['GET', 'POST'])
+def restaurants_view(request, pk):
+    if request.method == 'GET':
+        section = get_object_or_404(Section, pk=pk)
+        restaurants = section.restaurant_set.all()
+        serializer = RestaurantSerializer(restaurants, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        request.data['section'] = Section.objects.get(pk=pk)
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=500)
 
 
 class DishView(generics.ListCreateAPIView):

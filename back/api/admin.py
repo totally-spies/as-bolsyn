@@ -1,8 +1,27 @@
 from django.contrib import admin
-from api.models import Cuisine, Restaurant, Dish, Order, Review
+from api.models import Section, Restaurant, Dish, Order, Review
 
-admin.site.register(Cuisine)
-admin.site.register(Restaurant)
-admin.site.register(Dish)
-admin.site.register(Order)
-admin.site.register(Review)
+
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+
+@admin.register(Restaurant)
+class RestaurantAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'section',)
+
+
+@admin.register(Dish)
+class DishAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'restaurant',)
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'dish_name', 'count', 'user',)
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'user', 'restaurant',)

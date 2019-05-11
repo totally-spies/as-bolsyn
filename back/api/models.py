@@ -2,19 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Cuisine(models.Model):
+class Section(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return '{}:{}'.format('id', 'name')
+        return '{}'.format(self.name)
 
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=50)
-    cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}:{}'.format('id', 'name')
+        return '{}'.format(self.name)
 
 
 class Dish(models.Model):
@@ -22,7 +22,7 @@ class Dish(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}:{}'.format('name', 'restaurant')
+        return '{}'.format(self.name)
 
 
 class Order(models.Model):
@@ -31,7 +31,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}:{}'.format('id', 'dish_name')
+        return '{}: {}'.format(self.dish_name, self.count)
 
 
 class Review(models.Model):
@@ -40,4 +40,4 @@ class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}:{}'.format('user', 'restaurant')
+        return '{}: {}'.format(self.user, self.restaurant)
