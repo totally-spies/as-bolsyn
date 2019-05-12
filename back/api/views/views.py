@@ -109,7 +109,7 @@ class Orders(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        return Order.objects.for_user(self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
