@@ -18,8 +18,8 @@ export class ProviderService extends MainService {
   }
 
   // RESTAURANT
-  getRestaurants(cuisine: ISection): Promise<IRestaurant[]> {
-    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/`, {});
+  getRestaurants(section: ISection): Promise<IRestaurant[]> {
+    return this.get(`http://localhost:8000/api/cuisines/${section.id}/restaurants/`, {});
   }
 
   // createRestaurant(name: any): Promise<IRestaurant> {
@@ -35,7 +35,7 @@ export class ProviderService extends MainService {
     });
   }
 
-  deleteRestaurant(cuisineId:number, restaurantId: number): Promise<any> {
+  deleteRestaurant(cuisineId: number, restaurantId: number): Promise<any> {
     return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurant/${restaurantId}/`, {});
   }
 
@@ -50,14 +50,14 @@ export class ProviderService extends MainService {
   //   });
   // }
 
-  updateDish(cuisine: ISection, restaurant: IRestaurant, dish:IDish): Promise<IDish> {
+  updateDish(cuisine: ISection, restaurant: IRestaurant, dish: IDish): Promise<IDish> {
     return this.put(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/${restaurant.id}/dish/${dish.id}`, {
       name: dish.name,
       // cuisine:
     });
   }
 
-  deleteDish(cuisineId:number, restaurantId:number, dishId:number): Promise<any> {
+  deleteDish(cuisineId: number, restaurantId: number, dishId: number): Promise<any> {
     return this.delet(`http://localhost:8000/api/cuisines/${cuisineId}/restaurants/${restaurantId}/dish/${dishId}`, {});
   }
 
