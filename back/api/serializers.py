@@ -29,9 +29,15 @@ class RestaurantSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True)
     section = SectionSerializer(read_only=True)
 
-    class Meta:
-        model = Restaurant
-        fields = '__all__'
+    def create(self, validated_data):
+        restaurant = Restaurant(**validated_data)
+        restaurant.save()
+        return restaurant
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data('name', instance.name)
+        instance.save()
+        return instance
 
 
 class DishSerializer(serializers.ModelSerializer):

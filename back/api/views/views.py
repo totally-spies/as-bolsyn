@@ -39,7 +39,7 @@ class DishView(generics.ListCreateAPIView):
     serializer_class = DishSerializer
 
     def get_queryset(self):
-        return Dish.objects.filter(restaurant=self.kwargs['pk2'])
+        return Dish.objects.filter(dish=self.kwargs['pk3'])
 
 
 class OrderView(generics.ListCreateAPIView):
