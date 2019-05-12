@@ -12,8 +12,11 @@ class Login(APIView):
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
+        user_info = User.objects.get(username=user)
+        serializer = UserSerializer(user_info)
+        is_admin = serializer.data['is_staff']
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+        return Response({'token': token.key, 'is_admin': is_admin})
 
 
 class Logout(APIView):

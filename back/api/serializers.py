@@ -1,46 +1,63 @@
 from rest_framework import serializers
-from api.models import Restaurant, Cuisine, Order, Review, Dish
+from api.models import Section, Restaurant, Order, Review, Dish
 from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name', 'password', 'login', 'is_superuser')
+        fields = ('username', 'password', 'email', 'is_staff')
 
 
-class CuisineSerializer(serializers.Serializer):
+class SectionSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
 
     def create(self, validated_data):
-        cuisine = Cuisine(**validated_data)
-        cuisine.save()
-        return cuisine
+        section = Section(**validated_data)
+        section.save()
+        return section
 
     def update(self, instance, validated_data):
-        instance.name = validated_data('name', instance.name)
+        instance.name = validated_data.get('name', instance.name)
         instance.save()
         return instance
 
 
-class RestaurantSerializer(serializers.ModelSerializer):
+class RestaurantSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
-    cuisine = CuisineSerializer(read_only=True)
+    section = SectionSerializer(read_only=True)
 
-    class Meta:
-        model = Restaurant
-        fields = '__all__'
+    def create(self, validated_data):
+        restaurant = Restaurant(**validated_data)
+        restaurant.save()
+        return restaurant
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.save()
+        return instance
 
 
 class DishSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
+    price = serializers.IntegerField(required=True)
     restaurant = RestaurantSerializer(read_only=True)
 
     class Meta:
         model = Dish
+        fields = '__all__'
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    text = serializers.CharField(required=True)
+    user = UserSerializer(read_only=True)
+    restaurant = RestaurantSerializer(read_only=True)
+
+    class Meta:
+        model = Review
         fields = '__all__'
 
 
@@ -52,14 +69,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    text = serializers.CharField(required=True)
-    user = UserSerializer()
-    restaurant = RestaurantSerializer()
-
-    class Meta:
-        model = Review
         fields = '__all__'

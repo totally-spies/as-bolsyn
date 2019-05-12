@@ -2,17 +2,18 @@ from django.urls import path
 from api import views
 
 urlpatterns = [
-    # urls used in project
-
-    path('cuisines/', views.CuisineView.as_view()),                           # main page, shows the list of cuisines
-    path('cuisines/<int:pk>/restaurants/', views.RestaurantsView.as_view()),  # restaurants of a certain cuisine
-    path('cuisines/<int:pk1>/restaurants/<int:pk2>/', views.DishView.as_view()),
-    # path('cuisines/<int:pk1>/restaurants/<int:pk2>/reviews/', views.ReviewView.as_view()),
-    path('orders/', views.OrderView.as_view()),
+    path('sections/', views.sections_view),
+    path('sections/<int:pk>/', views.section_view),
+    path('sections/<int:pk>/restaurants/', views.Restaurants.as_view()),
+    path('restaurants/<int:pk>/', views.RestaurantView.as_view()),
+    path('restaurants/<int:pk>/dishes/', views.Dishes.as_view()),
+    path('dishes/<int:pk>/', views.DishView.as_view()),
+    path('restaurants/<int:pk>/reviews/', views.Reviews.as_view()),
+    path('orders/', views.Orders.as_view()),
+    path('orders/<int:pk>/', views.OrderView.as_view()),
+    path('clear/', views.Clearer.as_view()),
     path('users/', views.UserList.as_view()),
-    path('user/', views.UserInfo.as_view()),
     path('login/', views.Login.as_view()),
     path('logout/', views.Logout.as_view()),
-
-    # urls for testing
+    path('', views.description),
 ]

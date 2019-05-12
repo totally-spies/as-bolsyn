@@ -1,4 +1,4 @@
-export interface ICuisine {
+export interface ISection {
   id: number;
   name: string;
 }
