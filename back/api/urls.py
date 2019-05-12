@@ -15,6 +15,6 @@ urlpatterns = [
     path('user/', views.UserInfo.as_view()),
     path('login/', views.Login.as_view()),
     path('logout/', views.Logout.as_view()),
-
+    path('about_api/', views.description)
     # urls for testing
 ]
