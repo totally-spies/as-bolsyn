@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password', 'is_staff')
+        fields = ('username', 'password', 'email', 'is_staff')
 
 
 class SectionSerializer(serializers.Serializer):
@@ -19,12 +19,12 @@ class SectionSerializer(serializers.Serializer):
         return section
 
     def update(self, instance, validated_data):
-        instance.name = validated_data('name', instance.name)
+        instance.name = validated_data.get('name', instance.name)
         instance.save()
         return instance
 
 
-class RestaurantSerializer(serializers.ModelSerializer):
+class RestaurantSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
     section = SectionSerializer(read_only=True)
@@ -35,7 +35,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
         return restaurant
 
     def update(self, instance, validated_data):
-        instance.name = validated_data('name', instance.name)
+        instance.name = validated_data.get('name', instance.name)
         instance.save()
         return instance
 
@@ -63,8 +63,8 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     text = serializers.CharField(required=True)
-    user = UserSerializer()
-    restaurant = RestaurantSerializer()
+    user = UserSerializer(read_only=True)
+    restaurant = RestaurantSerializer(read_only=True)
 
     class Meta:
         model = Review
