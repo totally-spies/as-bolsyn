@@ -43,10 +43,21 @@ class RestaurantSerializer(serializers.Serializer):
 class DishSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
+    price = serializers.IntegerField(required=True)
     restaurant = RestaurantSerializer(read_only=True)
 
     class Meta:
         model = Dish
+        fields = '__all__'
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    text = serializers.CharField(required=True)
+    user = UserSerializer(read_only=True)
+    restaurant = RestaurantSerializer(read_only=True)
+
+    class Meta:
+        model = Review
         fields = '__all__'
 
 
@@ -58,14 +69,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    text = serializers.CharField(required=True)
-    user = UserSerializer(read_only=True)
-    restaurant = RestaurantSerializer(read_only=True)
-
-    class Meta:
-        model = Review
         fields = '__all__'

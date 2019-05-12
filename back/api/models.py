@@ -20,6 +20,7 @@ class Restaurant(models.Model):
 
 class Dish(models.Model):
     name = models.CharField(max_length=50)
+    price = models.IntegerField(default=3000)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE,
                                    related_name='dishes')
 
@@ -32,6 +33,16 @@ class OrderManager(models.Manager):
         return self.filter(user=user)
 
 
+class Review(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE,
+                                   related_name='reviews')
+
+    def __str__(self):
+        return '{}: {}'.format(self.user, self.restaurant)
+
+
 class Order(models.Model):
     dish_name = models.CharField(max_length=200)
     count = models.IntegerField()
@@ -41,13 +52,3 @@ class Order(models.Model):
 
     def __str__(self):
         return '{}: {}'.format(self.dish_name, self.count)
-
-
-class Review(models.Model):
-    text = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE,
-                                   related_name='reviews')
-
-    def __str__(self):
-        return '{}: {}'.format(self.user, self.restaurant)

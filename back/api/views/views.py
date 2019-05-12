@@ -2,17 +2,18 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 
 from api.models import Section, Restaurant, Dish, Order, Review
 from api.serializers import SectionSerializer, RestaurantSerializer, \
                             DishSerializer, OrderSerializer, ReviewSerializer
 
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
 
 @api_view(['GET', 'POST'])
-def sections(request):
+def sections_view(request):
     if request.method == 'GET':
         sections = Section.objects.all()
         serializer = SectionSerializer(sections, many=True)
@@ -26,7 +27,7 @@ def sections(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def section(request, pk):
+def section_view(request, pk):
     section = get_object_or_404(Section, pk=pk)
     if request.method == 'GET':
         serializer = SectionSerializer(section)
@@ -57,21 +58,21 @@ class Restaurants(APIView):
         return Response(serializer.errors, status=500)
 
 
-class Restaurant(APIView):
-    def get(self, request, pk, pk1):
-        restaurant = get_object_or_404(Restaurant, pk=pk1)
+class RestaurantView(APIView):
+    def get(self, request, pk):
+        restaurant = get_object_or_404(Restaurant, pk=pk)
         serializer = RestaurantSerializer(restaurant)
         return Response(serializer.data)
 
-    def put(self, request, pk, pk1):
-        restaurant = get_object_or_404(Restaurant, pk=pk1)
+    def put(self, request, pk):
+        restaurant = get_object_or_404(Restaurant, pk=pk)
         serializer = RestaurantSerializer(instance=restaurant, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
 
-    def delete(self, request, pk, pk1):
-        restaurant = get_object_or_404(Restaurant, pk=pk1)
+    def delete(self, request, pk):
+        restaurant = get_object_or_404(Restaurant, pk=pk)
         restaurant.delete()
         return Response(status=204)
 
@@ -80,12 +81,32 @@ class Dishes(generics.ListCreateAPIView):
     serializer_class = DishSerializer
 
     def get_queryset(self):
-        return Dish.objects.filter(restaurant=self.kwargs['pk1'])
+        return Dish.objects.filter(restaurant=self.kwargs['pk'])
+
+    def perform_create(self, serializer):
+        restaurant = get_object_or_404(Restaurant, id=self.kwargs['pk'])
+        serializer.save(restaurant=restaurant)
 
 
-class OrderView(generics.ListCreateAPIView):
+class DishView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dish.objects.all()
+    serializer_class = DishSerializer
+
+
+class Reviews(generics.ListCreateAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(restaurant=self.kwargs['pk'])
+
+    def perform_create(self, serializer):
+        restaurant = get_object_or_404(Restaurant, id=self.kwargs['pk'])
+        serializer.save(user=self.request.user, restaurant=restaurant)
+
+
+class Orders(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
@@ -94,12 +115,19 @@ class OrderView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class ReviewView(generics.ListCreateAPIView):
-    serializer_class = ReviewSerializer
-    permission_classes = (IsAuthenticated, )
+class OrderView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = (IsAuthenticated,)
 
-    def get_queryset(self):
-        return Review.objects.filter(restaurant=self.kwargs['pk2'])
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+class Clearer(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def delete(self, request):
+        Order.objects.filter(user=request.user).delete()
+        return Response(status=204)
+
+
+def description(request):
+    return render(request, 'api.html')

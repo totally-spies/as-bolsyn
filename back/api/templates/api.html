@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Api Description</title>
+</head>
+<body>
+    <h1>Sections</h1>
+    <h2>When we click on one section, they just show the list. <br>Nobody can edit or add something.<br> When clicking on a section , it goes to the page with the restaurants of this section.<br></h2>
+    <h3>http://127.0.0.1:8000/api/sections/</h3>
+    <br>
+    <h1>List of restaurants</h1>
+    <h2>All (authorized and unauthorized) can see the list. <br>Authorized admins can create and edit the list, others can not.<br> When you click on one of them, you go to the page with its dishes.</h2>
+    <h3>http://127.0.0.1:8000/api/cuisines/pk/restaurants/</h3>
+    <br>
+    <h1>Dishes</h1>
+    <h2>Everyone sees the list.<br> Each Dish is tied to one place from the list of categories.<br> Authorized admins can create and edit dishes, authorized users can add dishes to their order list.<br> Fields for adding dishes are visible only to authorized users.<br> Clicking on the 'Reviews' button takes you to a page with restaurant reviews.</h2>
+    <h3>http://127.0.0.1:8000/api/cuisines/pk/restaurants/pk/dishes/</h3>
+    <br>
+    <h1>Review</h1>
+    <h2>Everyone sees the list.<br> Each Review is tied to one place from the list.<br> Only authorized users can create new Review.<br> No one can edit. <br>The fields for creating a review are visible only to authorized users.</h2>
+    <h3>http://127.0.0.1:8000/api/cuisines/pk/restaurants/pk/reviews/</h3>
+    <br>
+    <h1>Order</h1>
+    <h2>An authorized user sees only his list of orders.<br> The list of orders is a list of dish and its quantity. <br>The user can delete a dish and change its quantity.<br> When you click on the "Confirm" button, the entire list is cleared.<br> (Plans: bind time series)</h2>
+    <h3>http://127.0.0.1:8000/api/orders/</h3>
+</body>
+</html>
