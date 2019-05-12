@@ -18,8 +18,8 @@ export class ProviderService extends MainService {
   }
 
   // RESTAURANT
-  getRestaurants(cuisine: ISection): Promise<IRestaurant[]> {
-    return this.get(`http://localhost:8000/api/cuisines/${cuisine.id}/restaurants/`, {});
+  getRestaurants(section: ISection): Promise<IRestaurant[]> {
+    return this.get(`http://localhost:8000/api/cuisines/${section.id}/restaurants/`, {});
   }
 
   // createRestaurant(name: any): Promise<IRestaurant> {
