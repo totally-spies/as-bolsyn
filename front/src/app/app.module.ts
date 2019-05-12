@@ -9,11 +9,13 @@ import { AuthInterceptor } from './AuthInterceptor';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
