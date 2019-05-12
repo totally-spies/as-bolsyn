@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 
 
 @api_view(['GET', 'POST'])
-def sections_view(request):
+def sections(request):
     if request.method == 'GET':
         sections = Section.objects.all()
         serializer = SectionSerializer(sections, many=True)
@@ -26,7 +26,7 @@ def sections_view(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def section_view(request, pk):
+def section(request, pk):
     section = get_object_or_404(Section, pk=pk)
     if request.method == 'GET':
         serializer = SectionSerializer(section)
@@ -41,7 +41,7 @@ def section_view(request, pk):
         return Response(status=204)
 
 
-class RestaurantsView(APIView):
+class Restaurants(APIView):
     def get(self, request, pk):
         section = get_object_or_404(Section, pk=pk)
         restaurants = section.restaurants.all()
@@ -57,7 +57,7 @@ class RestaurantsView(APIView):
         return Response(serializer.errors, status=500)
 
 
-class RestaurantView(APIView):
+class Restaurant(APIView):
     def get(self, request, pk, pk1):
         restaurant = get_object_or_404(Restaurant, pk=pk1)
         serializer = RestaurantSerializer(restaurant)
@@ -76,11 +76,11 @@ class RestaurantView(APIView):
         return Response(status=204)
 
 
-class DishView(generics.ListCreateAPIView):
+class Dishes(generics.ListCreateAPIView):
     serializer_class = DishSerializer
 
     def get_queryset(self):
-        return Dish.objects.filter(dish=self.kwargs['pk3'])
+        return Dish.objects.filter(restaurant=self.kwargs['pk1'])
 
 
 class OrderView(generics.ListCreateAPIView):
