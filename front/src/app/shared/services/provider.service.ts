@@ -32,8 +32,8 @@ export class ProviderService extends MainService {
      });
    }
 
-  getRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
-   return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {});
+  getRestaurant(restaurantId: string): Promise<IRestaurant> {
+   return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/`, {});
   }
 
   putRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
@@ -74,8 +74,8 @@ export class ProviderService extends MainService {
   }
 
   // Review
-  getReviews(restaurant: IRestaurant): Promise<IReview[]> {
-    return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/reviews/`, {});
+  getReviews(restaurantId: string): Promise<IReview[]> {
+    return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/reviews/`, {});
   }
 
   postReview(restaurant: IRestaurant, nText: any): Promise<IReview> {

@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
       this.isLogged = true;
       this.isAdmin = (localStorage.getItem('isAdmin') === 'True' ? true : false);
       this.userName = localStorage.getItem('name');
-      console.log(this.isAdmin);
     }
   }
 

@@ -46,4 +46,8 @@ export class NavBarComponent implements OnInit {
       this.karaokes = res;
     });
   }
+
+  sendRestaurantId(restaurant: IRestaurant) {
+    localStorage.setItem('restaurantId', restaurant.id.toString());
+  }
 }
