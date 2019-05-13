@@ -1,10 +1,14 @@
-<div class="main1">
+<div class="main1" >
   <nav>
     <ul class="nav-tabs">
-      <li class="nav-item" *ngFor='let item of items'>
+      <li class="nav-item" *ngFor='let item of items' (onclick)=showEdit()>
         <a href={{item.link}} class="nav-link active">{{item.title}}</a>
       </li>
     </ul>
   </nav>
+  <div class = "dropdown" *ngIf=isEdit>
+      <p>Hi, working</p>
+  </div>
+
  
 </div>
