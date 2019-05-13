@@ -7,15 +7,32 @@ import {ISection, IRestaurant, IDish} from '../shared/models/models'
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
+
 export class MainComponent implements OnInit {
   public cuisinelist: ISection[] = [];
   public restaurantlist: IRestaurant[]=[];
   public dishlist: IDish[] = [];
 
   constructor(private provider: ProviderService) { }
-
+  public slideIndex = 0;
   ngOnInit() {
    //
+   
+this.showSlides();
+  }
+
+  showSlides() {
+
+    let i;
+    let slides = document.getElementsByClassName("mySlides") ;
+    for (i = 0; i < slides.length; i++) {
+      slides[i].setAttribute("style", "display : none"); 
+    }
+    this.slideIndex++;
+    if (this.slideIndex > slides.length) {this.slideIndex = 1} 
+    slides[this.slideIndex-1].setAttribute("style", "display : block");
+    setTimeout(() => this.showSlides(), 4000); // Change image every 2 seconds
   }
 }
 
