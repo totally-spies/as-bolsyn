@@ -37,11 +37,6 @@ class Dish(models.Model):
         return '{}'.format(self.name)
 
 
-class OrderManager(models.Manager):
-    def for_user(self, user):
-        return self.filter(user=user)
-
-
 class Review(models.Model):
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -50,6 +45,11 @@ class Review(models.Model):
 
     def __str__(self):
         return '{}: {}'.format(self.user, self.restaurant)
+
+
+class OrderManager(models.Manager):
+    def for_user(self, user):
+        return self.filter(user=user)
 
 
 class Order(models.Model):

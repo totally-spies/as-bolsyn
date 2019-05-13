@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from './item';
+import { Item } from '../shared/models/models';
 
 @Component({
   selector: 'app-nav-bar',
