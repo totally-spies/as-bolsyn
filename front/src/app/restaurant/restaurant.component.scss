@@ -1,0 +1,31 @@
+.info {
+  height: 500px;
+  width: 45%;
+  margin-left: 7%;
+  position: relative;
+  float: left;
+}
+
+.reviews {
+  height: 500px;
+  max-height: 800px;
+  width: 40%;
+  margin-left: 54%;
+  position: relative;
+  border-radius: 4%;
+  background-color: rgb(250, 239, 239);
+}
+
+h2 {
+  font-size: 32px;
+}
+
+#head2 {
+  font-family: 'Courier New', Courier, monospace
+}
+
+#write {
+  width: 85%;
+  height: 12%;
+  font-size: 16px;
+}

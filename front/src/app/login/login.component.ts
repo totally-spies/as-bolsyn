@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService } from '../shared/services/provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +12,28 @@ export class LoginComponent implements OnInit {
   public login = '';
   public password = '';
 
-  constructor(private provider: ProviderService) { }
+  constructor(private provider: ProviderService, private router: Router) { }
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/']);
+    }
   }
 
   auth() {
-    if (this.login !== '' && this.password !== '') {
+    if (this.login && this.password) {
       this.provider.auth(this.login, this.password).then(res => {
+        this.login = '';
+        this.password = '';
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.name);
-        if (res.isAdmin) {
+        if (res.is_admin) {
           localStorage.setItem('isAdmin', 'True');
         } else {
           localStorage.setItem('isAdmin', 'False');
         }
+        window.location.reload();
       });
     }
   }

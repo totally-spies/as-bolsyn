@@ -18,8 +18,8 @@ export class ProviderService extends MainService {
   }
 
   // Restaurant
-  getRestaurants(section: ISection): Promise<IRestaurant[]> {
-    return this.get(`http://localhost:8000/api/section/${section.id}/restaurants/`, {});
+  getRestaurants(sectionId: number): Promise<IRestaurant[]> {
+    return this.get(`http://localhost:8000/api/sections/${sectionId}/restaurants/`, {});
   }
 
   postRestaurant(sectionId: number, nName: any, nImageUrl: any, nAddress: any, nContact: any, nAvgCost: number): Promise<IRestaurant> {
@@ -32,17 +32,17 @@ export class ProviderService extends MainService {
      });
    }
 
-  getRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
-   return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {});
+  getRestaurant(restaurantId: string): Promise<IRestaurant> {
+   return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/`, {});
   }
 
   putRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
     return this.put(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {
       name: restaurant.name,
-      imageUrl: restaurant.imageUrl,
+      imageUrl: restaurant.image_url,
       address: restaurant.address,
       contact: restaurant.contact,
-      avgCost: restaurant.avgCost
+      avgCost: restaurant.avg_cost
     });
   }
 
@@ -74,8 +74,8 @@ export class ProviderService extends MainService {
   }
 
   // Review
-  getReviews(restaurant: IRestaurant): Promise<IReview[]> {
-    return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/reviews/`, {});
+  getReviews(restaurantId: string): Promise<IReview[]> {
+    return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/reviews/`, {});
   }
 
   postReview(restaurant: IRestaurant, nText: any): Promise<IReview> {
@@ -98,7 +98,7 @@ export class ProviderService extends MainService {
 
   putOrder(order: IOrder): Promise<IOrder> {
     return this.put(`http://localhost:8000/api/orders/${order.id}/`,{
-      name: order.dishName,
+      name: order.dish_name,
       count: order.count
     });
   }

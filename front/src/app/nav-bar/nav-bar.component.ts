@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../shared/models/models';
-import { Title } from '@angular/platform-browser';
+import { ISection, IRestaurant } from '../shared/models/models';
+import { ProviderService } from '../shared/services/provider.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,39 +8,46 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-  isEdit:boolean;
-  public items: Item[] = [
-    { title: 'Restaurant', link: '#' },
-    { title: 'Bar', link: '#' },
-    { title: 'Coffee', link: '#' },
-    { title: 'Cafe', link: '#' },
-    { title: 'Karaoke', link: '#' },
-]
-  
 
+  public sections: ISection[] = [];
+  public restaurants: IRestaurant[] = [];
+  public bars: IRestaurant[] = [];
+  public cafes: IRestaurant[] = [];
+  public coffees: IRestaurant[] = [];
+  public karaokes: IRestaurant[] = [];
 
-  constructor() { }
+  constructor(private provider: ProviderService) { }
 
   ngOnInit() {
+    this.getSections();
+    this.get();
   }
-  showEdit(){
-    this.isEdit = !this.isEdit;
+
+  getSections() {
+    this.provider.getSections().then(res => {
+      this.sections = res;
+    });
   }
-   myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+
+  get() {
+    this.provider.getRestaurants(1).then(res => {
+      this.restaurants = res;
+    });
+    this.provider.getRestaurants(2).then(res => {
+      this.bars = res;
+    });
+    this.provider.getRestaurants(3).then(res => {
+      this.cafes = res;
+    });
+    this.provider.getRestaurants(4).then(res => {
+      this.coffees = res;
+    });
+    this.provider.getRestaurants(5).then(res => {
+      this.karaokes = res;
+    });
   }
-  
-  // Close the dropdown menu if the user clicks outside of it
-  onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
+
+  sendRestaurantId(restaurant: IRestaurant) {
+    localStorage.setItem('restaurantId', restaurant.id.toString());
   }
 }

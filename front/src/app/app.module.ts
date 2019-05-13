@@ -14,7 +14,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignupComponent } from './signup/signup.component';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { OrdersComponent } from './orders/orders.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     FooterComponent,
     NavBarComponent,
     SignupComponent,
-    RestaurantsComponent
+    RestaurantComponent,
+    OrdersComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
