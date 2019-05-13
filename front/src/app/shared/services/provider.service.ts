@@ -11,141 +11,114 @@ export class ProviderService extends MainService {
   constructor(http: HttpClient) {
     super(http);
   }
-  
-  //GET POST
-  // Get SECTIONS
+
+  // Section
   getSections(): Promise<ISection[]> {
     return this.get('http://localhost:8000/api/sections/', {});
   }
-  
-  //Post SECTIONS
-  createSections(name:any):Promise<ISection>{
-    return this.post('http://localhost:8000/api/sections/', {
-      name:name
-    });
-  }
 
-  //GET PUT DELETE
-  //Get SECTION
-  getSection(section:ISection):Promise<ISection>{
-    return this.get(`http://localhost:8000/api/sections/${section.id}/`, {});
-  }
-
-  //Put SECTION
-  updateSection(section:ISection):Promise<ISection>{
-    return this.get(`http://localhost:8000/api/sections/${section.id}/`,{
-      name:section.name
-    });
-  }
-  deleteSection(sectionId):Promise<any>{
-    return this.delet(`http://localhost:8000/api/sections/${sectionId}/`,{});
-  }
-
-  // RESTAURANTS Get Post
-  //Get RESTAURANTS
+  // Restaurant
   getRestaurants(section: ISection): Promise<IRestaurant[]> {
     return this.get(`http://localhost:8000/api/section/${section.id}/restaurants/`, {});
   }
 
-  //POST RESTAURANTS
-  createRestaurant(name: any, section:ISection): Promise<IRestaurant> {
-     return this.post(`http://localhost:8000/api/sections/${section.id}/restaurants/`, {
-       name: name
+  postRestaurant(sectionId: number, nName: any, nImageUrl: any, nAddress: any, nContact: any, nAvgCost: number): Promise<IRestaurant> {
+     return this.post(`http://localhost:8000/api/sections/${sectionId}/restaurants/`, {
+       name: nName,
+       imageUrl: nImageUrl,
+       address: nAddress,
+       contact: nContact,
+       avgCost: nAvgCost
      });
    }
 
-   // GET PUT DELETE RESTAURANT
-   //GET RESTAURANT
-   getRestaurant(restaurant:IRestaurant):Promise<IRestaurant>{
-     return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/`,{});
-   }
-   //PUT RESTAURANT
-  updateRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
+  getRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
+   return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {});
+  }
+
+  putRestaurant(restaurant: IRestaurant): Promise<IRestaurant> {
     return this.put(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {
       name: restaurant.name,
-      // cuisine:
+      imageUrl: restaurant.imageUrl,
+      address: restaurant.address,
+      contact: restaurant.contact,
+      avgCost: restaurant.avgCost
     });
   }
-  //DELETE RESTAURANT
-  deleteRestaurant(restaurantId: number): Promise<any> {
-    return this.delet(`http://localhost:8000/api/restaurants/${restaurantId}/`, {});
+
+  deleteRestaurant(restaurant: IRestaurant): Promise<any> {
+    return this.delet(`http://localhost:8000/api/restaurants/${restaurant.id}/`, {});
   }
 
-  // DISH GET POST
-  getDishes(restaurant:IRestaurant): Promise<IDish[]> {
+  // Dish
+  getDishes(restaurant: IRestaurant): Promise<IDish[]> {
     return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/dishes/`, {});
   }
-  //POST DISH
-  createDish(name: any, restaurant:IRestaurant): Promise<IDish> {
+
+  postDish(restaurant: IRestaurant, nName: any, nPrice: number): Promise<IDish> {
     return this.post(`http://localhost:8000/api/restaurants/${restaurant.id}/dishes/`, {
-      name: name
+      name: nName,
+      price: nPrice
     });
   }
 
-  //GET PUT DELETE DISH
-  //GET DISH
-  getDish(dish:IDish):Promise<IDish>{
-    return this.get(`http://localhost:8000/api/dishes/${dish.id}/`,{});
-  }
-  //PUT DISH
-  updateDish(dish: IDish): Promise<IDish> {
+  putDish(dish: IDish): Promise<IDish> {
     return this.put(`http://localhost:8000/api//dishes/${dish.id}/`, {
-      name: dish.name
+      name: dish.name,
+      price: dish.price
     });
-  }
-  //DELETE DISH
-  deleteDish(dishId: number): Promise<any> {
-    return this.delet(`http://localhost:8000/api/dishes/${dishId}/`, {});
   }
 
-  //GET POST Reviews
-  getReviews(restaurant:IRestaurant):Promise<IReview[]>{
-    return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/reviews/`,{});
+  deleteDish(dish: IDish): Promise<any> {
+    return this.delet(`http://localhost:8000/api/dishes/${dish.id}/`, {});
   }
-  //POST
-  createReview(name:any, restaurant:IRestaurant):Promise<IReview>{
+
+  // Review
+  getReviews(restaurant: IRestaurant): Promise<IReview[]> {
+    return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/reviews/`, {});
+  }
+
+  postReview(restaurant: IRestaurant, nText: any): Promise<IReview> {
     return this.post(`http://localhost:8000/api/restaurants/${restaurant.id}/reviews/`,{
-      name:name
+      text: nText
     });
   }
-  //GET POST Orders
-  getOrders():Promise<IOrder[]>{
+
+  // Order
+  getOrders(): Promise<IOrder[]> {
     return this.get('http://localhost:8000/api/orders/',{});
   }
-  //Post Order
-  createOrder(dishname:any):Promise<IOrder>{
-    return this.post('http://localhost:8000/api/orders/',{
-      dishName:dishname
+
+  postOrder(nDishname: any, nCount: number): Promise<IOrder> {
+    return this.post('http://localhost:8000/api/orders/', {
+      dishName: nDishname,
+      count: nCount
     });
   }
 
-  //GET PUT DELETE ORDER
-  getOrder(order:IOrder):Promise<IOrder>{
-    return this.get(`http://localhost:8000/api/orders/${order.id}/`,{});
-  }
-  //PUT ORDER
-  updateOrder(dishname:any, order:IOrder):Promise<IOrder>{
+  putOrder(order: IOrder): Promise<IOrder> {
     return this.put(`http://localhost:8000/api/orders/${order.id}/`,{
-      name: order.dishName
+      name: order.dishName,
+      count: order.count
     });
   }
-  
-  deleteOrder(orderId:IOrder):Promise<any>{
-    return this.post(`http://localhost:8000/api/orders/${orderId}/`,{});
+
+  deleteOrder(order: IOrder): Promise<any> {
+    return this.post(`http://localhost:8000/api/orders/${order.id}/`,{});
   }
-   //POST CLEARER
-   deleteOrders(order: IOrder[]):Promise<any>{
-    return this.post('http://localhost:8000/api/clear/',{});
+
+  deleteOrders(): Promise<any>{
+    return this.delet('http://localhost:8000/api/clear/', {});
   }
-  // POST LOGIN
-  auth(login: any, password: any): Promise<IAuthResponse> {
+
+  // Auth
+  auth(login: any, pass: any): Promise<IAuthResponse> {
     return this.post('http://localhost:8000/api/login/', {
       username: login,
-      password: password
+      password: pass
     });
   }
 
-  //POST LOGOUT
   logout(): Promise<any> {
     return this.post('http://localhost:8000/api/logout/', {});
   }

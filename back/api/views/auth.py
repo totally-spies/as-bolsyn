@@ -4,7 +4,9 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from api.serializers import UserSerializer, RegisterSerializer
+from django.views import generic
 
 
 class Login(APIView):
@@ -15,8 +17,9 @@ class Login(APIView):
         user_info = User.objects.get(username=user)
         serializer = UserSerializer(user_info)
         is_admin = serializer.data['is_staff']
+        name = serializer.data['first_name']
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key, 'is_admin': is_admin})
+        return Response({'token': token.key, 'is_admin': is_admin, 'name': name})
 
 
 class Logout(APIView):
@@ -25,9 +28,8 @@ class Logout(APIView):
         return Response(status=204)
 
 
-class Register(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = RegisterSerializer
+class Register(generic.CreateView):
+    form_class = UserCreationForm
 
 
 class UserList(generics.ListAPIView):
