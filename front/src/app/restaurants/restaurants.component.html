@@ -1,0 +1,26 @@
+<body>
+    <div class="restaurant" id="restaurant1">
+            <div class="rest-body">
+            <p class="card-title">{{section}} | {{name}}</p>
+            <button id="btn1"  class="btn btn-primary" (click)="showInformation()">Details</button> 
+          </div>
+      </div>
+      <div class="restaurant" id="restaurant2">
+          <div class="rest-body">
+          <p class="card-title">Section | Restaurant2</p>
+          <button id="btn1"  class="btn btn-primary" (click)="showInformation2()">Details</button> 
+        </div>
+    </div>
+    <div class="restaurant" id="restaurant3">
+        <div class="rest-body">
+        <p class="card-title">Section | Restaurant3</p>
+        <button id="btn1"  class="btn btn-primary" (click)="showInformation3()">Details</button> 
+      </div>
+  </div>
+  <br>
+  <div class="information1" *ngIf=isDropDown1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem obcaecati, nesciunt distinctio commodi, animi, eveniet explicabo voluptatibus aut quam dignissimos molestiae? Laboriosam quam perspiciatis nobis distinctio fuga voluptatibus tenetur quae?</p>
+
+  </div>
+
+</body>

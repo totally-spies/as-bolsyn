@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   constructor(private provider: ProviderService) { }
 
   ngOnInit() {
-   //
+   
   }
 }
 

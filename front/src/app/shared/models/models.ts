@@ -6,7 +6,7 @@ export interface ISection {
 export interface IRestaurant {
   id: number;
   name: string;
-  cuisine: string;
+  section: string;
 }
 
 export interface IDish {
