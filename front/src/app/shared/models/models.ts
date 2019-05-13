@@ -7,9 +7,9 @@ export interface IUser {
   id: number;
   username: string;
   password: string;
-  firstName: string;
+  first_name: string;
   email: string;
-  isAdmin: boolean;
+  is_admin: boolean;
 }
 
 export interface ISection {
@@ -20,10 +20,10 @@ export interface ISection {
 export interface IRestaurant {
   id: number;
   name: string;
-  imageUrl: string;
+  image_url: string;
   address: string;
   contact: string;
-  avgCost: number;
+  avg_cost: number;
   section: ISection;
 }
 
@@ -43,13 +43,13 @@ export interface IReview {
 
 export interface IOrder {
   id: number;
-  dishName: string;
+  dish_name: string;
   count: number;
   user: IUser;
 }
 
 export interface IAuthResponse {
   token: string;
-  isAdmin: boolean;
+  is_admin: boolean;
   name: string;
 }

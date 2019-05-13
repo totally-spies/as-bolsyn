@@ -3,19 +3,32 @@
 <div class="main1">
   <nav>
     <ul class="nav-tabs">
-      <li class="nav-item" *ngFor='let item of items'>
-        <a href={{item.link}} class="nav-link active">{{item.title}}</a>
+      <li class="nav-item">
+        <a href={{items[0].link}} class="nav-link active">{{items[0].title}}</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a href={{items[1].link}} class="nav-link active">{{items[1].title}}</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a href={{items[2].link}} class="nav-link active">{{items[2].title}}</a>
       </li>
     </ul>
   </nav>
 </div>
 
-<div class="sign">
+<div class="sign" *ngIf="!isLogged">
   <div class="sign_button">
     <a href="/login">Log in</a>
   </div>
   <div class="sign_button">
     <a href="/signup">Sign up</a>
+  </div>
+</div>
+
+<div class="sign_out" *ngIf="isLogged">
+  <h4>Welcome, {{this.userName}}!</h4>
+  <div class="logout">
+    <a href="/" (click)="logout()">Log out</a>
   </div>
 </div>
 
@@ -28,10 +41,10 @@
 <link href="https://fonts.googleapis.com/css?family=Gugi|Teko" rel="stylesheet">
 <h1>As-Bolsyn</h1>
 <div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
 </div>
 </div>
-  
+
 </body>

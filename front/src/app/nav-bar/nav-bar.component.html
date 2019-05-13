@@ -1,8 +1,49 @@
-<div class="main1">
+<div class="main">
   <nav>
     <ul class="nav-tabs">
-      <li class="nav-item" *ngFor='let item of items'>
-        <a href={{item.link}} class="nav-link active">{{item.title}}</a>
+      <li class="nav-item" *ngFor='let section of sections'>
+        <a class="nav-link active">{{section.name}}</a>
+
+        <ng-container *ngIf="section.id===1">
+          <div class="content">
+            <ng-container *ngFor="let restaurant of restaurants">
+              <a href="/restaurant">{{restaurant.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.id===2">
+          <div class="content">
+            <ng-container *ngFor="let bar of bars">
+              <a href="/restaurant">{{bar.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.id===3">
+          <div class="content">
+            <ng-container *ngFor="let cafe of cafes">
+              <a href="/restaurant">{{cafe.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.id===4">
+          <div class="content">
+            <ng-container *ngFor="let coffee of coffees">
+              <a href="/restaurant">{{coffee.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="section.id===5">
+          <div class="content">
+            <ng-container *ngFor="let karaoke of karaokes">
+              <a href="/restaurant">{{karaoke.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
       </li>
     </ul>
   </nav>
