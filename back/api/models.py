@@ -11,6 +11,11 @@ class Section(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=50)
+    image_url = models.CharField(max_length=255,
+                            default='https://www.buro247.kz/images/Restaurants-Almaty-Spring-2016-13.jpg')
+    address = models.CharField(max_length=100, default='Abay str. 64')
+    contact = models.CharField(max_length=100, default='+7 (701) 979 80 73')
+    avg_cost = models.IntegerField(default=4500)
     section = models.ForeignKey(Section, on_delete=models.CASCADE,
                                 related_name='restaurants')
 
@@ -23,6 +28,10 @@ class Dish(models.Model):
     price = models.IntegerField(default=3000)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE,
                                    related_name='dishes')
+
+    class Meta:
+        verbose_name = 'Dish'
+        verbose_name_plural = 'Dishes'
 
     def __str__(self):
         return '{}'.format(self.name)

@@ -7,11 +7,12 @@ import { Item } from './item';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
   public items: Item[] = [
-    { title: 'Home', link: '#' },
-    { title: 'Orders', link: '/product' },
-    { title: 'Profile', link: '#' },
+    { title: 'Restaurant', link: '#' },
+    { title: 'Bar', link: '/product' },
+    { title: 'Coffee', link: '#' },
+    { title: 'Cafe', link: '#' },
+    { title: 'Karaoke', link: '#' },
 ]
 
   constructor() { }
