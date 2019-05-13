@@ -19,11 +19,10 @@ export class MainComponent implements OnInit {
   ngOnInit() {
    //
    
-this.showSlides();
+    this.showSlides();
   }
 
   showSlides() {
-
     let i;
     let slides = document.getElementsByClassName("mySlides") ;
     for (i = 0; i < slides.length; i++) {
@@ -33,6 +32,10 @@ this.showSlides();
     if (this.slideIndex > slides.length) {this.slideIndex = 1} 
     slides[this.slideIndex-1].setAttribute("style", "display : block");
     setTimeout(() => this.showSlides(), 4000); // Change image every 2 seconds
+  }
+
+  currentSlide(n: number) {
+    this.slideIndex = n;
   }
 }
 

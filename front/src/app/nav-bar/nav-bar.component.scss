@@ -3,6 +3,7 @@
 	width: 100%;
 	height: 35px;
 	position: relative;
+	margin-bottom: 1cm;
 }
 h5{
 	color: aliceblue;
@@ -12,7 +13,9 @@ h5{
 	margin-left: 4cm;
 
 }
-
+html {
+	height: 100%;
+  }
 .catalog{
 	color: #111;
 }

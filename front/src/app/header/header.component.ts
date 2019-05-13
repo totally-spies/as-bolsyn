@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from './item';
+import { Item } from '../shared/models/models';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +8,7 @@ import { Item } from './item';
 export class HeaderComponent implements OnInit {
   public items: Item[] = [
     { title: 'Home', link: '#' },
-    { title: 'Orders', link: '/product' },
+    { title: 'Orders', link: '#' },
     { title: 'Profile', link: '#' },
 ]
 
