@@ -6,7 +6,13 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password', 'email', 'is_staff')
+        fields = ('username', 'password', 'first_name', 'email', 'is_staff')
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'password', 'first_name', 'email',)
 
 
 class SectionSerializer(serializers.Serializer):
@@ -27,6 +33,10 @@ class SectionSerializer(serializers.Serializer):
 class RestaurantSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
+    image_url = serializers.CharField(required=True)
+    address = serializers.CharField(required=True)
+    contact = serializers.CharField(required=True)
+    avg_cost = serializers.IntegerField(required=True)
     section = SectionSerializer(read_only=True)
 
     def create(self, validated_data):

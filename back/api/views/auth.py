@@ -4,7 +4,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from django.contrib.auth.models import User
-from api.serializers import UserSerializer
+from api.serializers import UserSerializer, RegisterSerializer
 
 
 class Login(APIView):
@@ -23,6 +23,11 @@ class Logout(APIView):
     def post(self, request):
         request.auth.delete()
         return Response(status=204)
+
+
+class Register(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
 
 
 class UserList(generics.ListAPIView):

@@ -9,7 +9,7 @@ class SectionAdmin(admin.ModelAdmin):
 
 @admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'section',)
+    list_display = ('id', 'name', 'address', 'contact', 'avg_cost', 'section', 'image_url',)
 
 
 @admin.register(Dish)
