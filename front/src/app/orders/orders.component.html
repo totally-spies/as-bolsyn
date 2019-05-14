@@ -1,4 +1,5 @@
 <div class="main" *ngIf="!empty">
+
   <div class="orders" *ngFor="let order of orders">
     <div class="column">
       <h3>{{order.dish_name}}</h3>
@@ -7,9 +8,11 @@
       <button class="button"  (click)="deleteOrder(order)">Delete</button>
     </div>
   </div>
-  </div>
+
   <div class="confirm">
-  <button  class="button2" (click)="deleteOrders()">Confirm</button>
+    <button class="button2" (click)="deleteOrders()">Confirm</button>
+  </div>
+
 </div>
 
 
