@@ -1,51 +1,74 @@
 .info {
   height: 550px;
-  width: 42%;
+  width: 60%;
   margin-left: 7%;
   position: relative;
   float: left;
 }
 
+.more{
+  position: absolute;
+  margin-top: 1cm;
+  margin-left: 22cm;
+  float: right;
+}
 .reviews {
   height: 550px;
   max-height: 800px;
-  width: 38%;
-  margin-left: 54%;
+  width: 680px;
+  margin-left: 7%;
+  margin-bottom: 3cm;
   position: relative;
   border-radius: 4%;
-  background-color: rgb(250, 239, 239);
+  float: left;
+  // background-color: lightblue;
+  background-image: url("http://www.photos-public-domain.com/wp-content/uploads/2011/03/blue-parchment-paper-texture.jpg")
 }
 
-h2 {
-  font-size: 32px;
+h1 {
+  font-size: 49px;
+  font-family: 'Teko', serif;
 }
 
 #head2 {
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Teko', serif;
+  text-align: center;
+
+}
+#send{
+  color: black;
 }
 
+#send a:hover{
+  color: red;
+}
 #write {
   width: 85%;
   height: 12%;
   font-size: 16px;
+  margin-left: 1cm;
 }
-
+.review{
+  margin-left: 0.7cm;
+  margin-right: 0.3cm;
+}
 .menu {
-	background-color: red;
+	background-image: url("http://www.photos-public-domain.com/wp-content/uploads/2011/03/blue-parchment-paper-texture.jpg");
   position: absolute;
   width: 85px;
   height: 40px;
-  margin-left: 55%;
-  color: white;
+  // margin-left: 55%;
+  text-align: center;
+  color: black;
   border-radius: 7px;
 }
 
 .menu a {
-  color: white;
+  color: black;
   font-size: 23px;
   text-align: center;
 }
 
 .menu a:hover {
-  color: black;
+  color: white;
 }

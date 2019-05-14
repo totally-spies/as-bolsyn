@@ -1,38 +1,42 @@
 <div class="info">
-  <h2>{{restaurant.name}}</h2>
+  <h1>{{restaurant.name}}</h1>
 
-  <div class="menu">
-    <a href="/menu">Menu</a>
-  </div>
 
-  <div class="more">
-    <table>
 
-      <tr>
-        <td><h3>Address:</h3></td>
-        <td>{{restaurant.address}}</td>
-      </tr>
-      <tr>
-        <td><h3>Contacts:</h3></td>
-        <td>{{restaurant.contact}}</td>
-      </tr>
-      <tr>
-        <td><h3>Average price:</h3></td>
-        <td>{{restaurant.avg_cost}}</td>
-      </tr>
+  <img src={{restaurant.image_url}} alt="image" width="680px">
 
-    </table>
-  </div>
+  
 
-  <img src={{restaurant.image_url}} alt="image" width="520px">
+</div><br>
 
+<div class="more">
+  <table>
+    <tr>
+      <td><h3>Address:</h3></td>
+      <td>{{restaurant.address}}</td>
+    </tr>
+    <tr>
+      <td><h3>Contacts:</h3></td>
+      <td>{{restaurant.contact}}</td>
+    </tr>
+    <tr>
+      <td><h3>Average price:</h3></td>
+      <td>{{restaurant.avg_cost}}</td>
+    </tr><br><br>
+    <tr>
+      <div class="menu">
+        <a href="/menu">Menu</a>
+      </div>
+    </tr>
+  </table>
 </div>
+
 
 <div class="reviews">
   <h2 id="head2">Reviews</h2>
   <div *ngIf="isLogged">
     <textarea name="" id="write" cols="250" rows="6" [(ngModel)]="text"></textarea>
-    <button (click)="sendReview()">Send</button>
+    <button id="send" (click)="sendReview()">Send</button>
   </div>
 
   <div class="content" *ngFor="let review of reviews">
