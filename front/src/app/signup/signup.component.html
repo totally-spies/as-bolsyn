@@ -1,12 +1,12 @@
 <div class="main">
 
-  <form class="box" action="" method="post">
+  <div class="box">
     <h2>Sign up</h2>
-    <input type="text" name="" placeholder="Name">
-    <input type="text" name="" placeholder="Email">
-    <input type="text" name="" placeholder="Username">
-    <input type="password" name="" placeholder="Password">
-    <input type="submit" value="Sign up">
-  </form>
+    <input type="text" name="" placeholder="Name" [(ngModel)]="name">
+    <input type="text" name="" placeholder="Email" [(ngModel)]="email">
+    <input type="text" name="" placeholder="Username" [(ngModel)]="login">
+    <input type="password" name="" placeholder="Password" [(ngModel)]="password">
+    <input type="submit" value="Sign up" (click)="signUp()">
+  </div>
 
 </div>

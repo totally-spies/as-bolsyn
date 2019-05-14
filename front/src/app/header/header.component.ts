@@ -9,7 +9,7 @@ import { ProviderService } from '../shared/services/provider.service';
 export class HeaderComponent implements OnInit {
   public items: Item[] = [
     { title: 'Home', link: '' },
-    { title: 'Orders', link: '#' },
+    { title: 'Orders', link: '/orders' },
     { title: 'Profile', link: '#' },
   ];
 

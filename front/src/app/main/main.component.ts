@@ -16,22 +16,20 @@ export class MainComponent implements OnInit {
 
   constructor(private provider: ProviderService) { }
   public slideIndex = 0;
+
   ngOnInit() {
-   //
-   
     this.showSlides();
   }
 
   showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides") ;
-    for (i = 0; i < slides.length; i++) {
-      slides[i].setAttribute("style", "display : none"); 
+    const slides = document.getElementsByClassName('mySlides') ;
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].setAttribute('style', 'display : none');
     }
     this.slideIndex++;
-    if (this.slideIndex > slides.length) {this.slideIndex = 1} 
-    slides[this.slideIndex-1].setAttribute("style", "display : block");
-    setTimeout(() => this.showSlides(), 4000); // Change image every 2 seconds
+    if (this.slideIndex > slides.length) { this.slideIndex = 1; }
+    slides[this.slideIndex - 1].setAttribute('style', 'display : block');
+    setTimeout(() => this.showSlides(), 4000);
   }
 
   currentSlide(n: number) {

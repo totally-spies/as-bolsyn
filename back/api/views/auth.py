@@ -5,9 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from api.serializers import UserSerializer, RegisterSerializer
-from django.views import generic
 
 
 class Login(APIView):
@@ -30,8 +28,9 @@ def logout(request):
     return Response(status=204)
 
 
-class Register(generic.CreateView):
-    form_class = UserCreationForm
+class Register(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
 
 
 class UserList(generics.ListAPIView):
