@@ -1,19 +1,20 @@
-<div class="main">
+<div class="row">
+  <h1 id="menu">Menu</h1>
   <div class="dishes" *ngFor="let dish of dishes">
     <div>
-
-      <h3>{{dish.name}}</h3>
-      <h4>{{dish.price}}</h4>
-
-      <div *ngIf="isLogged">
-        <button (click)="postOrder(dish)">Order</button>
+      <div class="column" id="column1">
+        <h3>{{dish.name}}</h3>
+        <h4>Average price - {{dish.price}}</h4>
+      </div>
+      <div class="column2" *ngIf="isLogged">
+        <button  id="order" (click)="postOrder(dish)">Order</button>
       </div>
 
-      <div *ngIf="isAdmin">
-        <input type="text" [(ngModel)]="dish.name">
-        <input type="text" [(ngModel)]="dish.price">
-        <button (click)="putDish(dish)">Save</button>
-        <button (click)="deleteDish(dish)">Delete</button>
+      <div  class="column3" id="inputs" *ngIf="isAdmin">
+        <input id="input" type="text" [(ngModel)]="dish.name">
+        <input  id="input2"type="text" [(ngModel)]="dish.price">
+        <button  id ="save" (click)="putDish(dish)">Save</button>
+        <button id ="save" (click)="deleteDish(dish)">Delete</button>
       </div>
 
     </div>
