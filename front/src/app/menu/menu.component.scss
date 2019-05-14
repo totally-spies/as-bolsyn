@@ -1,26 +1,30 @@
+.row {
+  height: 1200px;
+}
+
 .column {
     padding-top: 10px;
     float: left;
     width: 33%;
-    height: 100px; 
+    height: 100px;
     background-color:white;
-    
+
   }
   .column3 {
     padding-top: 10px;
     float: left;
     width: 42%;
-    height: 100px; 
+    height: 100px;
     background-color:white;
   }
   .column2{
     padding-top: 10px;
     float: left;
     width: 25%;
-    height: 100px; 
+    height: 100px;
     background-color:white;
   }
-  
+
   #column1{
       color:chocolates;
   }
@@ -88,4 +92,3 @@
       margin-top: 20px;
       margin-bottom: 5cm;
   }
- 

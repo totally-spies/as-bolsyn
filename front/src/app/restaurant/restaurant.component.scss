@@ -32,10 +32,8 @@ h1 {
 #head2 {
   font-family: 'Teko', serif;
   text-align: center;
-
-}
-#send{
-  color: black;
+  margin-top: 7px;
+  font-size: 32px;
 }
 
 #send a:hover{
@@ -50,6 +48,7 @@ h1 {
 .review{
   margin-left: 0.7cm;
   margin-right: 0.3cm;
+  margin-bottom: 4px;
 }
 .menu {
 	background-image: url("http://www.photos-public-domain.com/wp-content/uploads/2011/03/blue-parchment-paper-texture.jpg");
@@ -82,4 +81,39 @@ tr {
 }
 #second {
   margin-left: 25px;
+}
+
+textarea {
+  border-radius: 4%;
+  border: 2px solid black;
+  margin-left: 10px;
+}
+
+textarea:focus {
+  border: 2px solid yellow;
+}
+
+#send {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid #222;
+  background-color: #222;
+  padding: 8px 20px;
+  outline: none;
+  color: white;
+  border-radius: 16px;
+  transition: 0.25s;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#send:hover {
+  background: black;
+}
+
+.content {
+  margin-left: 20px;
 }
