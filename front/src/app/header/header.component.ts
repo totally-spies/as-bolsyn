@@ -10,7 +10,6 @@ export class HeaderComponent implements OnInit {
   public items: Item[] = [
     { title: 'Home', link: '' },
     { title: 'Orders', link: '/orders' },
-    { title: 'Profile', link: '#' },
   ];
 
   public isLogged = false;

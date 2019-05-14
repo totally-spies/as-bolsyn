@@ -9,9 +9,6 @@
       <li class="nav-item" *ngIf="isLogged">
         <a href={{items[1].link}} class="nav-link active">{{items[1].title}}</a>
       </li>
-      <li class="nav-item" *ngIf="isLogged">
-        <a href={{items[2].link}} class="nav-link active">{{items[2].title}}</a>
-      </li>
     </ul>
   </nav>
 </div>
@@ -23,10 +20,11 @@
   <div class="sign_button">
     <a href="/signup">Sign up</a>
   </div>
+
 </div>
 
 <div class="sign_out" *ngIf="isLogged">
-  <h4>Welcome, {{this.userName}}!</h4>
+  <h4>Hello, {{this.userName}}!</h4>
   <div class="logout">
     <a href="/" (click)="logout()">Log out</a>
   </div>
