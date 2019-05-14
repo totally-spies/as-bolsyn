@@ -21,11 +21,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  clear() {
+    this.login = '';
+    this.password = '';
+  }
+
   auth() {
-    if (this.login && this.password) {
+    if (!this.login || !this.password) {
+      alert('Please, provide full information');
+      this.clear();
+    } else {
       this.provider.auth(this.login, this.password).then(res => {
-        this.login = '';
-        this.password = '';
+        this.clear();
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.name);
         if (res.is_admin) {
@@ -34,6 +41,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('isAdmin', 'False');
         }
         window.location.reload();
+      }).catch(res => {
+        alert('Wrong login or password. Please, try again or sign up');
+        this.clear();
       });
     }
   }

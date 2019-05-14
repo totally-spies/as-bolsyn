@@ -23,11 +23,11 @@
   <div class="sign_button">
     <a href="/signup">Sign up</a>
   </div>
-  
+
 </div>
 
 <div class="sign_out" *ngIf="isLogged">
-  <h4>Welcome, {{this.userName}}!</h4>
+  <h4>Hello, {{this.userName}}!</h4>
   <div class="logout">
     <a href="/" (click)="logout()">Log out</a>
   </div>

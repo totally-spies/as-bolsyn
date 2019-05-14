@@ -25,12 +25,12 @@
     </table>
   </div>
 
-  
+
 
 
 <h2 id="head2">Reviews</h2>
 
-  
+
   <div *ngIf="isLogged">
     <textarea name="" id="write" cols="250" rows="6" [(ngModel)]="text"></textarea>
     <button (click)="sendReview()">Send</button>
@@ -38,7 +38,7 @@
 
   <div class="content" *ngFor="let review of reviews">
     <div class="review">
-      <h5>{{review.user.username}}</h5>
+      <h5>{{review.user.first_name}}</h5>
       <p>{{review.text}}</p>
     </div>
   </div>
