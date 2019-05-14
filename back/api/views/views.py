@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
 
 from api.models import Section, Restaurant, Dish, Order, Review
 from api.serializers import SectionSerializer, RestaurantSerializer, \
@@ -43,6 +44,9 @@ def section_view(request, pk):
 
 
 class Restaurants(APIView):
+    filter_backends = (filters.OrderingFilter,)
+    ordering = ('name', )
+
     def get(self, request, pk):
         section = get_object_or_404(Section, pk=pk)
         restaurants = section.restaurants.all()
@@ -79,6 +83,8 @@ class RestaurantView(APIView):
 
 class Dishes(generics.ListCreateAPIView):
     serializer_class = DishSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering = ('price',)
 
     def get_queryset(self):
         return Dish.objects.filter(restaurant=self.kwargs['pk'])

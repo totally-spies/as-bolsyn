@@ -11,6 +11,7 @@ export class SignupComponent implements OnInit {
 
   public login = '';
   public password = '';
+  public confirm = '';
   public email = '';
   public name = '';
 
@@ -19,14 +20,29 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  clear() {
+    this.login = '';
+    this.password = '';
+    this.confirm = '';
+    this.email = '';
+    this.name = '';
+  }
+
   signUp() {
-    if (this.login && this.password) {
+    if (!this.login || !this.password || !this.confirm) {
+      alert('Please provide username and password');
+      this.clear();
+    } else if (this.password !== this.confirm) {
+      alert('Passwords do not coincide');
+      this.clear();
+    } else {
       this.provider.register(this.login, this.password, this.name, this.email).then(res => {
-        this.login = '';
-        this.password = '';
-        this.email = '';
-        this.name = '';
+        this.clear();
         this.router.navigate(['/login']);
+        alert('You were successfully signed up. Now, please, log in');
+      }).catch(res => {
+        alert('Something went wrong. Please, try again');
+        this.clear();
       });
     }
   }
