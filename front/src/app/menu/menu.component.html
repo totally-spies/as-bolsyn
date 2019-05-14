@@ -4,13 +4,9 @@
     <div>
       <div class="column" id="column1">
         <h3>{{dish.name}}</h3>
-<<<<<<< HEAD
-        <h4>Dish price - {{dish.price}}</h4>
-=======
         <h4>Price: {{dish.price}}</h4>
->>>>>>> 2e0522e09a82468dd90d355986f0c0a248510e06
       </div>
-      <div class="column2" *ngIf="isLogged">
+      <div *ngIf="isLogged">
         <button  id="order" (click)="postOrder(dish)">Order</button>
       </div>
 
