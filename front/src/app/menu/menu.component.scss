@@ -5,7 +5,7 @@
 .column {
     padding-top: 10px;
     float: left;
-    width: 33%;
+    width: 50%;
     height: 100px;
     background-color:white;
 
@@ -13,21 +13,11 @@
   .column3 {
     padding-top: 10px;
     float: left;
-    width: 42%;
-    height: 100px;
-    background-color:white;
-  }
-  .column2{
-    padding-top: 10px;
-    float: left;
-    width: 25%;
+    width: 40%;
     height: 100px;
     background-color:white;
   }
 
-  #column1{
-      color:chocolates;
-  }
   #menu{
       padding-top: 10px;
       padding-left: 45%;
@@ -36,20 +26,16 @@
   }
   h3{
       color: black;
-      text-align: center;
       font-family: 'Teko', serif;
-      font-size: 200%;
+      font-size: 180%;
   }
   h4{
       color: black ;
-      text-align: center;
       font-family: 'Tako', serif;
       font-size: 120%;
 
   }
   #order{
-      margin-left: 30%;
-     text-align: center;
       width: 70px;
       height: 32px;
       background-color: cadetblue;
@@ -91,4 +77,5 @@
   .dishes{
       margin-top: 20px;
       margin-bottom: 5cm;
+      margin-left: 200px;
   }

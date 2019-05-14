@@ -23,7 +23,6 @@ class Login(APIView):
 
 @api_view(['POST'])
 def logout(request):
-    print(request.auth)
     request.auth.delete()
     return Response(status=204)
 

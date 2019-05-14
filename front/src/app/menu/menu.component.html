@@ -6,7 +6,7 @@
         <h3>{{dish.name}}</h3>
         <h4>Price: {{dish.price}}</h4>
       </div>
-      <div class="column2" *ngIf="isLogged">
+      <div *ngIf="isLogged">
         <button  id="order" (click)="postOrder(dish)">Order</button>
       </div>
 
