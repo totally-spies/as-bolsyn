@@ -21,7 +21,6 @@
   position: relative;
   border-radius: 4%;
   float: left;
-  // background-color: lightblue;
   background-image: url("http://www.photos-public-domain.com/wp-content/uploads/2011/03/blue-parchment-paper-texture.jpg")
 }
 
@@ -57,7 +56,6 @@ h1 {
   position: absolute;
   width: 85px;
   height: 40px;
-  // margin-left: 55%;
   text-align: center;
   color: black;
   border-radius: 7px;
@@ -74,4 +72,14 @@ h1 {
 }
 #image{
   width: 100%;
+}
+
+table {
+  width: 350px;
+}
+tr {
+  width: 300px;
+}
+#second {
+  margin-left: 25px;
 }
