@@ -1,3 +1,21 @@
-<p>
-  menu works!
-</p>
+<div class="main">
+  <div class="dishes" *ngFor="let dish of dishes">
+    <div>
+
+      <h3>{{dish.name}}</h3>
+      <h4>{{dish.price}}</h4>
+
+      <div *ngIf="isLogged">
+        <button (click)="postOrder(dish)">Order</button>
+      </div>
+
+      <div *ngIf="isAdmin">
+        <input type="text" [(ngModel)]="dish.name">
+        <input type="text" [(ngModel)]="dish.price">
+        <button (click)="putDish(dish)">Save</button>
+        <button (click)="deleteDish(dish)">Delete</button>
+      </div>
+
+    </div>
+  </div>
+</div>

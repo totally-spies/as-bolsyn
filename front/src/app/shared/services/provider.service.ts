@@ -51,8 +51,8 @@ export class ProviderService extends MainService {
   }
 
   // Dish
-  getDishes(restaurant: IRestaurant): Promise<IDish[]> {
-    return this.get(`http://localhost:8000/api/restaurants/${restaurant.id}/dishes/`, {});
+  getDishes(restaurantId: string): Promise<IDish[]> {
+    return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/dishes/`, {});
   }
 
   postDish(restaurant: IRestaurant, nName: any, nPrice: number): Promise<IDish> {
@@ -63,7 +63,7 @@ export class ProviderService extends MainService {
   }
 
   putDish(dish: IDish): Promise<IDish> {
-    return this.put(`http://localhost:8000/api//dishes/${dish.id}/`, {
+    return this.put(`http://localhost:8000/api/dishes/${dish.id}/`, {
       name: dish.name,
       price: dish.price
     });
@@ -91,7 +91,7 @@ export class ProviderService extends MainService {
 
   postOrder(nDishname: any, nCount: number): Promise<IOrder> {
     return this.post('http://localhost:8000/api/orders/', {
-      dishName: nDishname,
+      dish_name: nDishname,
       count: nCount
     });
   }
@@ -104,7 +104,7 @@ export class ProviderService extends MainService {
   }
 
   deleteOrder(order: IOrder): Promise<any> {
-    return this.post(`http://localhost:8000/api/orders/${order.id}/`,{});
+    return this.delet(`http://localhost:8000/api/orders/${order.id}/`,{});
   }
 
   deleteOrders(): Promise<any>{

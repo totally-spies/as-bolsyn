@@ -1,15 +1,15 @@
 .info {
-  height: 500px;
-  width: 45%;
+  height: 550px;
+  width: 42%;
   margin-left: 7%;
   position: relative;
   float: left;
 }
 
 .reviews {
-  height: 500px;
+  height: 550px;
   max-height: 800px;
-  width: 40%;
+  width: 38%;
   margin-left: 54%;
   position: relative;
   border-radius: 4%;
@@ -28,4 +28,24 @@ h2 {
   width: 85%;
   height: 12%;
   font-size: 16px;
+}
+
+.menu {
+	background-color: red;
+  position: absolute;
+  width: 85px;
+  height: 40px;
+  margin-left: 55%;
+  color: white;
+  border-radius: 7px;
+}
+
+.menu a {
+  color: white;
+  font-size: 23px;
+  text-align: center;
+}
+
+.menu a:hover {
+  color: black;
 }
