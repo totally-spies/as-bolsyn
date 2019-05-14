@@ -122,4 +122,13 @@ export class ProviderService extends MainService {
   logout(): Promise<any> {
     return this.post('http://localhost:8000/api/logout/', {});
   }
+
+  register(login: any, pass: any, name: any, nEmail: any): Promise<IAuthResponse> {
+    return this.post('http://localhost:8000/api/register/', {
+      username: login,
+      password: pass,
+      first_name: name,
+      email: nEmail
+    });
+  }
 }
