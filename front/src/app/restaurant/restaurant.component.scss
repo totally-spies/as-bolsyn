@@ -38,7 +38,12 @@ h1 {
 #send{
   color: black;
   margin-left: 0.3cm;
-  margin-bottom: 8cm;
+  width: 40px;
+  height: 22px;
+  background-color: cadetblue;
+  border-radius: 7%;
+  border-block-start-color: cadetblue;
+
 }
 
 #send a:hover{
@@ -73,7 +78,4 @@ h1 {
 
 .menu a:hover {
   color: white;
-}
-#image{
-  width: 100%;
 }
