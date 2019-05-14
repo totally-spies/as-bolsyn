@@ -1,0 +1,91 @@
+.column {
+    padding-top: 10px;
+    float: left;
+    width: 33%;
+    height: 100px; 
+    background-color:white;
+    
+  }
+  .column3 {
+    padding-top: 10px;
+    float: left;
+    width: 42%;
+    height: 100px; 
+    background-color:white;
+  }
+  .column2{
+    padding-top: 10px;
+    float: left;
+    width: 25%;
+    height: 100px; 
+    background-color:white;
+  }
+  
+  #column1{
+      color:chocolates;
+  }
+  #menu{
+      padding-top: 10px;
+      padding-left: 45%;
+      color: cadetblue;
+      font-family: 'Tako', serif;
+  }
+  h3{
+      color: black;
+      text-align: center;
+      font-family: 'Teko', serif;
+      font-size: 200%;
+  }
+  h4{
+      color: black ;
+      text-align: center;
+      font-family: 'Tako', serif;
+      font-size: 120%;
+
+  }
+  #order{
+      margin-left: 30%;
+     text-align: center;
+      width: 70px;
+      height: 32px;
+      background-color: cadetblue;
+      color:white;
+      border-radius: 7%;
+      border-block-start-color: cadetblue;
+  }
+  #save{
+    width: 70px;
+    height: 32px;
+    background-color: cadetblue;
+    color:white;
+    border-radius: 7%;
+    border-block-start-color: cadetblue;
+    margin-left: 5px;
+  }
+  #save:hover{
+    background-color: rgb(72, 132, 134);
+  }
+  #order:hover{
+      background-color: rgb(72, 132, 134);
+  }
+  #input{
+      padding-left: 10px;
+      width:200px;
+      height: 30px;
+      border-radius: 7%;
+  }
+  #input2{
+    width:80px;
+    height: 30px;
+    border-radius: 7%;
+    padding-left: 10px;
+    margin-left: 5px;
+}
+  #inputs{
+      padding-left: 0%;
+  }
+  .dishes{
+      margin-top: 20px;
+      margin-bottom: 5cm;
+  }
+ 
