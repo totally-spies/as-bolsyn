@@ -29,9 +29,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.isLogged = false;
-    this.isAdmin = false;
-    localStorage.clear();
-    window.location.reload();
+    this.provider.logout().then(res => {
+      this.isLogged = false;
+      this.isAdmin = false;
+      localStorage.clear();
+      //window.location.reload();
+    });
   }
 }
