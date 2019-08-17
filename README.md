@@ -1,6 +1,4 @@
-## KBTU Web Development Class. Spring 2019
-
-### Totally Spies Team Project work
+### Totally Spies Team Presents
 
 ### Team Members
 | Name | GitHub account | Email |
